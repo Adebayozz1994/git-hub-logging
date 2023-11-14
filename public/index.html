@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button onclick="checkGithub()">check</button>
+  <div id="show"></div>
+
+
+
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+    import { GithubAuthProvider, getAuth, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBCjmclEhx0FNLCBhRMBIj_TDjlBB7rZ7s",
+      authDomain: "second-project-ebdb4.firebaseapp.com",
+      projectId: "second-project-ebdb4",
+      storageBucket: "second-project-ebdb4.appspot.com",
+      messagingSenderId: "929984816112",
+      appId: "1:929984816112:web:eace9fed5250a71486b335"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GithubAuthProvider();
+
+
+
+    const checkGithub = () => {
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          const user = result.user;
+          console.log(user);
+
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    }
+    window.checkGithub = checkGithub
+
+  </script>
+</body>
+
+</html>
